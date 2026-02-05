@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rose Day 💖</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg, #ffd6e8, #ffffff);
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+    text-align:center;
+    z-index:2;
+}
+
+h2{
+    color:#e60073;
+}
+
+.gojo{
+    width:300px;
+    max-width:90%;
+    filter: drop-shadow(0 0 15px rgba(255,105,180,0.8));
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{
+        filter: drop-shadow(0 0 10px rgba(255,182,193,0.6));
+    }
+    to{
+        filter: drop-shadow(0 0 25px rgba(255,20,147,1));
+    }
+}
+
+.rose{
+    width:90px;
+    cursor:pointer;
+    transition: transform 0.4s ease;
+}
+
+.rose:hover{
+    transform: scale(1.15);
+}
+
+.message{
+    display:none;
+    margin-top:15px;
+    font-size:22px;
+    color:#ff0066;
+    font-weight:bold;
+}
+
+.falling-rose{
+    position:fixed;
+    top:-50px;
+    width:40px;
+    animation: fall linear infinite;
+    z-index:1;
+}
+
+@keyframes fall{
+    to{
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<div class="container">
+    <h2>🌸 Click on flower 🌸</h2>
+
+    <img src="ab8f624074a94c1766da3bd7c16a6c2c.jpg">
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Rose_icon.svg/512px-Rose_icon.svg.png"
+         class="rose"
+         onclick="showMessage()">
+
+    <div class="message" id="msg">
+        🌹 Happy Rose Day 🌹<br>
+        Princess 💖<br><br>
+        <a id="wa" target="_blank">💬 Share on WhatsApp</a>
+    </div>
+</div>
+
+<script>
+function showMessage(){
+    document.getElementById("msg").style.display = "block";
+    document.getElementById("music").play();
+
+    let text = "🌹 Happy Rose Day Princess 🌹\nFrom Gojo 💖";
+    document.getElementById("wa").href =
+      "https://wa.me/?text=" + encodeURIComponent(text);
+}
+
+for(let i=0;i<15;i++){
+    let rose = document.createElement("img");
+    rose.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Rose_icon.svg/512px-Rose_icon.svg.png";
+    rose.className = "falling-rose";
+    rose.style.left = Math.random()*100 + "vw";
+    rose.style.animationDuration = (10 + Math.random()*10) + "s";
+    rose.style.opacity = Math.random();
+    document.body.appendChild(rose);
+}
+</script>
+
+</body>
+</html>
